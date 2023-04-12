@@ -6,13 +6,12 @@ import {
 	deleteProduct,
 	removeProductFromCart,
 	sortByPrice,
-	sortById
+	sortById,
 } from "../actions";
 import { ToastContainer, toast } from "react-toastify";
 import { toastContainerStyle, toastStyle } from "../Constants";
 
 class Home extends React.Component {
-
 	handleSort = () => {
 		console.log("sorted");
 		this.props.dispatch(sortByPrice());
@@ -21,30 +20,25 @@ class Home extends React.Component {
 		console.log("cleared sort");
 		this.props.dispatch(sortById());
 	};
-	handleAddToCart = (id) => {
+	handleAddToCart = async (id) => {
 		console.log("adding to cart");
-		this.props.dispatch(addProductToCart(id));
-		toast.success('Product added to cart!', toastStyle);
+		await this.props.dispatch(addProductToCart(id));	
 	};
 	handleRemoveFromCart = (id) => {
 		console.log("removing from cart");
 		this.props.dispatch(removeProductFromCart(id));
-		toast.success('Product removed from cart!' , toastStyle);
-		
 	};
 	handleDeleteBtn = (id) => {
 		console.log("Product delete");
 		this.props.dispatch(deleteProduct(id));
-		toast.success('Product deleted successfully!' , toastStyle);
 	};
 	render() {
 		const products = this.props.products;
 		const isShowCart = this.props.isShowCart;
-		console.log("Home isShowCart: ", isShowCart);
 		const cartOrList = isShowCart ? products.cart : products.list;
-		console.log("cartOrlist: ", cartOrList);
 		return (
 			<div className="page-container">
+				<ToastContainer style={toastContainerStyle}/>
 				<div className="sort-div-container">
 					<div className="sort-div">
 						<span className="sort-btn" onClick={this.handleSort}>
@@ -90,21 +84,19 @@ class Home extends React.Component {
 												className="card-delete-btn"
 												onClick={() => this.handleDeleteBtn(product.id)}>
 												<i className="fa-solid fa-trash-can"></i>
-												<ToastContainer style={toastContainerStyle}/>		
+												<ToastContainer style={toastContainerStyle} />
 											</span>
 											{isShowCart ? (
 												<span
 													className="Remove-from-cart-btn brown"
 													onClick={() => this.handleRemoveFromCart(product.id)}>
 													Remove from Cart
-													<ToastContainer style={toastContainerStyle}/>
 												</span>
 											) : (
 												<span
 													className="Add-to-cart-btn"
 													onClick={() => this.handleAddToCart(product.id)}>
 													Add to Cart
-													<ToastContainer style={toastContainerStyle}/>
 												</span>
 											)}
 										</div>

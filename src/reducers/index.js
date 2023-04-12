@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 import {
 	ADD_PRODUCTS_TO_LIST,
 	ADD_PRODUCT_TO_CART,
@@ -26,7 +28,6 @@ export function products(state = initialProductsState, action) {
 				list: action.products,
 			};
 		case ADD_PRODUCT_TO_CART:
-			console.log("State: ", state);
 			const isPresent = state.cart.some((product) => product.id === action.id);
 			if (!isPresent) {
 				const product = state.list.filter(
@@ -41,7 +42,6 @@ export function products(state = initialProductsState, action) {
 				...state,
 			};
 		case REMOVE_PRODUCT_FROM_CART:
-			console.log("State: ", state);
 			const cartProducts = state.cart.filter(
 				(product) => product.id !== action.id
 			);

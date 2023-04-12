@@ -10,7 +10,6 @@ class Navbar extends React.Component {
 	}
 
 	render() {
-		console.log("props navbar: ", this.props.cart);
 		return (
 			<nav>
 				<div className="nav-left">

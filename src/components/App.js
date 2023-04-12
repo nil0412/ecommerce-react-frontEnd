@@ -22,18 +22,16 @@ class App extends React.Component {
 		await fetch(url)
 			.then((response) => response.json())
 			.then((products) => {
-				console.log("products: ", products);
-
 				this.props.dispatch(addProductsToList(products));
-				
+
 				this.setState({
-					isPageLoading: false
-				})
+					isPageLoading: false,
+				});
 			});
 	}
 	render() {
-		if(this.state.isPageLoading){
-			return <PageLoading />
+		if (this.state.isPageLoading) {
+			return <PageLoading />;
 		}
 		return (
 			<div className="App">
