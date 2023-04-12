@@ -38,10 +38,10 @@ export function setFormSubmittedToFalse() {
 		type: SET_FORM_SUBMITTED_TO_FALSE,
 	};
 }
-export function editProduct(id) {
+export function editProduct(data) {
 	return {
 		type: EDIT_PRODUCT,
-		id,
+		data,
 	};
 }
 export function deleteProduct(id) {

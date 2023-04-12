@@ -8,22 +8,33 @@ import { addProductsToList } from "../actions";
 import { connect } from "react-redux";
 import CreateProduct from "../pages/CreateProduct";
 import { JSON_API_URL } from "../Constants";
+import { PageLoading } from "../pages/PageLoading";
 
 class App extends React.Component {
-	componentWillMount() {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isPageLoading: true,
+		};
+	}
+	async componentDidMount() {
 		const url = JSON_API_URL;
-		fetch(url)
+		await fetch(url)
 			.then((response) => response.json())
 			.then((products) => {
 				console.log("products: ", products);
 
 				this.props.dispatch(addProductsToList(products));
-				// dispatchEvent()
-				// this.props.products.list = products;
-				// console.log("productsList: ", this.props.products.list);
+				
+				this.setState({
+					isPageLoading: false
+				})
 			});
 	}
 	render() {
+		if(this.state.isPageLoading){
+			return <PageLoading />
+		}
 		return (
 			<div className="App">
 				<BrowserRouter>

@@ -6,6 +6,7 @@ import {
 	IS_SHOW_CART,
 	REMOVE_PRODUCT_FROM_CART,
 	SET_FORM_SUBMITTED_TO_FALSE,
+	EDIT_PRODUCT,
 } from "../actions";
 
 const initialProductsState = {
@@ -67,6 +68,14 @@ export function products(state = initialProductsState, action) {
 			return {
 				...state,
 				isShowCart: action.boolean,
+			};
+		case EDIT_PRODUCT:
+			const newState = state.list.filter(
+				(product) => product.id !== action.data.id
+			);
+			return {
+				...state,
+				list: [action.data, ...newState],
 			};
 		default:
 			return state;
