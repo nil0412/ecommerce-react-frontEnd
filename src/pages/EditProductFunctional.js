@@ -54,7 +54,7 @@ export function EditProductFunctional(props) {
 			})
 			.catch((error) => {
 				console.error("Error:", error);
-				toast.erroe(("Error: ", error), toastStyle);
+				toast.erroe(("Error while editing product"), toastStyle);
 			});
 	};
 

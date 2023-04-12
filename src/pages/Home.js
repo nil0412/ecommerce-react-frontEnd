@@ -8,8 +8,8 @@ import {
 	sortByPrice,
 	sortById,
 } from "../actions";
-import { ToastContainer, toast } from "react-toastify";
-import { toastContainerStyle, toastStyle } from "../Constants";
+import { toastContainerStyle } from "../Constants";
+import { ToastContainer } from "react-toastify";
 
 class Home extends React.Component {
 	handleSort = () => {
@@ -22,7 +22,7 @@ class Home extends React.Component {
 	};
 	handleAddToCart = async (id) => {
 		console.log("adding to cart");
-		await this.props.dispatch(addProductToCart(id));	
+		await this.props.dispatch(addProductToCart(id));
 	};
 	handleRemoveFromCart = (id) => {
 		console.log("removing from cart");
@@ -38,7 +38,7 @@ class Home extends React.Component {
 		const cartOrList = isShowCart ? products.cart : products.list;
 		return (
 			<div className="page-container">
-				<ToastContainer style={toastContainerStyle}/>
+				<ToastContainer style={toastContainerStyle} />
 				<div className="sort-div-container">
 					<div className="sort-div">
 						<span className="sort-btn" onClick={this.handleSort}>
@@ -84,7 +84,6 @@ class Home extends React.Component {
 												className="card-delete-btn"
 												onClick={() => this.handleDeleteBtn(product.id)}>
 												<i className="fa-solid fa-trash-can"></i>
-												<ToastContainer style={toastContainerStyle} />
 											</span>
 											{isShowCart ? (
 												<span

@@ -1,5 +1,4 @@
-import {toast} from 'react-toastify';
-
+import { toast } from "react-toastify";
 
 //action types
 export const ADD_PRODUCTS_TO_LIST = "ADD_PRODUCTS_TO_LIST";
@@ -21,24 +20,25 @@ export function addProductsToList(products) {
 	};
 }
 export function addProductToCart(id) {
-	return function(dispatch) {
+	return function (dispatch) {
 		dispatch({
 			type: ADD_PRODUCT_TO_CART,
 			id,
 		});
-		// toast.success("MY SUCCESS", {
-		// 	autoClose: 1000
-		// });
-	  };
-	// return {
-	// 	type: ADD_PRODUCT_TO_CART,
-	// 	id,
-	// };
+		toast.success("Added to cart successfully!!!", {
+			autoClose: 1000,
+		});
+	};
 }
 export function removeProductFromCart(id) {
-	return {
-		type: REMOVE_PRODUCT_FROM_CART,
-		id,
+	return function (dispatch) {
+		dispatch({
+			type: REMOVE_PRODUCT_FROM_CART,
+			id,
+		});
+		toast.success("Removed from cart successfully!!!", {
+			autoClose: 1000,
+		});
 	};
 }
 export function addNewProductToList(product) {
@@ -59,9 +59,14 @@ export function editProduct(data) {
 	};
 }
 export function deleteProduct(id) {
-	return {
-		type: DELETE_PRODUCT_FROM_LIST,
-		id,
+	return function (dispatch) {
+		dispatch({
+			type: DELETE_PRODUCT_FROM_LIST,
+			id,
+		});
+		toast.success("Product deleted successfully!!!", {
+			autoClose: 1000,
+		});
 	};
 }
 export function isShowCart(boolean) {

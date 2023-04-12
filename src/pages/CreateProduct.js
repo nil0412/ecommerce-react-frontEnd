@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { addNewProductToList } from "../actions";
-import { JSON_API_URL } from "../Constants";
+import { JSON_API_URL, toastContainerStyle } from "../Constants";
 import { ToastContainer, toast } from "react-toastify";
-import { toastContainerStyle, toastStyle } from "../Constants";
+import { toastStyle } from "../Constants";
 
 class CreateProduct extends React.Component {
 	constructor(props) {
@@ -35,7 +35,7 @@ class CreateProduct extends React.Component {
 			})
 			.catch((error) => {
 				console.error("Error:", error);
-				toast.error(("Error: ", error), toastStyle);
+				toast.error("Error while ading to cart ", toastStyle);
 			});
 	};
 
@@ -111,6 +111,7 @@ class CreateProduct extends React.Component {
 							onChange={this.handleChange}></input>
 						<br />
 						<button type="submit">Add Product</button>
+						<ToastContainer style={toastContainerStyle} />
 					</form>
 				</div>
 			</div>
