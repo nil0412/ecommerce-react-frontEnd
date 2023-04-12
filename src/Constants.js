@@ -1,0 +1,1 @@
+export const JSON_API_URL = "https://my-json-server.typicode.com/nil0412/jsonApiDemo/products"
