@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { addNewProductToList } from "../actions";
 import { JSON_API_URL } from "../Constants";
-import {withRouter} from 'react-router-dom';
 
 class EditProduct extends React.Component {
 	constructor(props) {
@@ -127,4 +126,4 @@ function mapStateToProps(state) {
 
 const connectedEditProductComponent = connect(mapStateToProps)(EditProduct);
 
-export default withRouter(connectedEditProductComponent);
+export default connectedEditProductComponent;
