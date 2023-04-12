@@ -7,6 +7,8 @@ export const EDIT_PRODUCT = "EDIT_PRODUCT";
 export const DELETE_PRODUCT_FROM_LIST = "DELETE_PRODUCT_FROM_LIST";
 export const IS_SHOW_CART = "IS_SHOW_CART";
 export const SET_FORM_SUBMITTED_TO_FALSE = "SET_FORM_SUBMITTED_TO_FALSE";
+export const SORT_BY_PRICE = "SORT_BY_PRICE";
+export const SORT_BY_ID = "SORT_BY_ID";
 
 //action creaters
 export function addProductsToList(products) {
@@ -54,5 +56,15 @@ export function isShowCart(boolean) {
 	return {
 		type: IS_SHOW_CART,
 		boolean,
+	};
+}
+export function sortByPrice() {
+	return {
+		type: SORT_BY_PRICE,
+	};
+}
+export function sortById() {
+	return {
+		type: SORT_BY_ID,
 	};
 }

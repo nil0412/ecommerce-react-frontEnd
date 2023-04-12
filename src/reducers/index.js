@@ -7,6 +7,8 @@ import {
 	REMOVE_PRODUCT_FROM_CART,
 	SET_FORM_SUBMITTED_TO_FALSE,
 	EDIT_PRODUCT,
+	SORT_BY_PRICE,
+	SORT_BY_ID,
 } from "../actions";
 
 const initialProductsState = {
@@ -76,6 +78,22 @@ export function products(state = initialProductsState, action) {
 			return {
 				...state,
 				list: [action.data, ...newState],
+			};
+		case SORT_BY_PRICE:
+			const sortedByPriceList = state.list.sort((a, b) => a.price - b.price);
+			const sortedByPriceCart = state.cart.sort((a, b) => a.price - b.price);
+			return {
+				...state,
+				list: [...sortedByPriceList],
+				cart: [...sortedByPriceCart],
+			};
+		case SORT_BY_ID:
+			const sortedByIdList = state.list.sort((a, b) => a.id - b.id);
+			const sortedByIdCart = state.cart.sort((a, b) => a.id - b.id);
+			return {
+				...state,
+				list: [...sortedByIdList],
+				cart: [...sortedByIdCart],
 			};
 		default:
 			return state;

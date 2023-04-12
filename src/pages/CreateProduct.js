@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { addNewProductToList } from "../actions";
 import { JSON_API_URL } from "../Constants";
+import { ToastContainer, toast } from "react-toastify";
+import { toastContainerStyle, toastStyle } from "../Constants";
 
 class CreateProduct extends React.Component {
 	constructor(props) {
@@ -29,9 +31,11 @@ class CreateProduct extends React.Component {
 			.then((data) => {
 				console.log("Success:", data);
 				this.props.dispatch(addNewProductToList(data));
+				toast.success("Product added to cart!", toastStyle);
 			})
 			.catch((error) => {
 				console.error("Error:", error);
+				toast.error(("Error: ", error), toastStyle);
 			});
 	};
 

@@ -5,26 +5,37 @@ import {
 	addProductToCart,
 	deleteProduct,
 	removeProductFromCart,
+	sortByPrice,
+	sortById
 } from "../actions";
+import { ToastContainer, toast } from "react-toastify";
+import { toastContainerStyle, toastStyle } from "../Constants";
 
 class Home extends React.Component {
+
 	handleSort = () => {
 		console.log("sorted");
+		this.props.dispatch(sortByPrice());
 	};
 	handleClearSort = () => {
 		console.log("cleared sort");
+		this.props.dispatch(sortById());
 	};
 	handleAddToCart = (id) => {
 		console.log("adding to cart");
 		this.props.dispatch(addProductToCart(id));
+		toast.success('Product added to cart!', toastStyle);
 	};
 	handleRemoveFromCart = (id) => {
 		console.log("removing from cart");
 		this.props.dispatch(removeProductFromCart(id));
+		toast.success('Product removed from cart!' , toastStyle);
+		
 	};
 	handleDeleteBtn = (id) => {
 		console.log("Product delete");
 		this.props.dispatch(deleteProduct(id));
+		toast.success('Product deleted successfully!' , toastStyle);
 	};
 	render() {
 		const products = this.props.products;
@@ -68,7 +79,9 @@ class Home extends React.Component {
 										<p>{product.description}</p>
 										<hr></hr>
 										<div className="card-edit-btns">
-											<Link to={`/editProduct/${product.id}`} state={{id: product.id}}>
+											<Link
+												to={`/editProduct/${product.id}`}
+												state={{ id: product.id }}>
 												<span className="card-edit-btn">
 													<i className="fa-solid fa-pencil"></i>
 												</span>
@@ -77,18 +90,21 @@ class Home extends React.Component {
 												className="card-delete-btn"
 												onClick={() => this.handleDeleteBtn(product.id)}>
 												<i className="fa-solid fa-trash-can"></i>
+												<ToastContainer style={toastContainerStyle}/>		
 											</span>
 											{isShowCart ? (
 												<span
 													className="Remove-from-cart-btn brown"
 													onClick={() => this.handleRemoveFromCart(product.id)}>
 													Remove from Cart
+													<ToastContainer style={toastContainerStyle}/>
 												</span>
 											) : (
 												<span
 													className="Add-to-cart-btn"
 													onClick={() => this.handleAddToCart(product.id)}>
 													Add to Cart
+													<ToastContainer style={toastContainerStyle}/>
 												</span>
 											)}
 										</div>

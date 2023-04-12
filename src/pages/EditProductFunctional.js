@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { editProduct } from "../actions";
 import { JSON_API_URL } from "../Constants";
+import { ToastContainer, toast } from "react-toastify";
+import { toastContainerStyle, toastStyle } from "../Constants";
 
 export function EditProductFunctional(props) {
 	const [name, setName] = useState("");
@@ -48,9 +50,11 @@ export function EditProductFunctional(props) {
 			.then((data) => {
 				console.log("Success PUT:", data);
 				props.dispatch(editProduct(data));
+				toast.success("Product added to cart!", toastStyle);
 			})
 			.catch((error) => {
 				console.error("Error:", error);
+				toast.erroe(("Error: ", error), toastStyle);
 			});
 	};
 
@@ -136,10 +140,6 @@ export function EditProductFunctional(props) {
 						}
 						src={img}
 						alt="product img preview"
-						onError={(e) =>
-							(e.target.src =
-								"https://media.istockphoto.com/id/1383674565/photo/notification-icon-symbol-on-red-background-3d-rendering-illustration.jpg?s=612x612&w=0&k=20&c=g1CeKLANtyvvWYfHfAsXXBw2S8VJGZuWbFDY1TEv1SE=")
-						}
 					/>
 					<br />
 					<input
@@ -156,7 +156,8 @@ export function EditProductFunctional(props) {
 						Preview
 					</button>
 					<button className="submit-btn btn" type="submit">
-						Add Product
+						Save changes
+						<ToastContainer style={toastContainerStyle} />
 					</button>
 					<br />
 				</form>
