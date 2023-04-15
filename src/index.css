@@ -210,6 +210,9 @@ nav {
 	right: 20%;
 }
 
+
+
+/* Loading Page Animation */
 .loadingPage-container{
 	background: var(--bg);
 	color: var(--fg);

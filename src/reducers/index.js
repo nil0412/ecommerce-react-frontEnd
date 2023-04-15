@@ -72,12 +72,16 @@ export function products(state = initialProductsState, action) {
 				isShowCart: action.boolean,
 			};
 		case EDIT_PRODUCT:
-			const newState = state.list.filter(
+			const newList = state.list.filter(
+				(product) => product.id !== action.data.id
+			);
+			const newCart = state.cart.filter(
 				(product) => product.id !== action.data.id
 			);
 			return {
 				...state,
-				list: [action.data, ...newState],
+				list: [action.data, ...newList],
+				cart: [action.data, ...newCart],
 			};
 		case SORT_BY_PRICE:
 			const sortedByPriceList = state.list.sort((a, b) => a.price - b.price);
